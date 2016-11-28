@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>backbone view</title>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script type="text/template" id="div_template">
+      Hello <%= templatename %>
+      <button id="btn">点击</button>
+    </script>
+
+
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script>
+    (function($) {
+        var AppView = Backbone.View.extend({
+            el:"#div",
+            initialize:function(){
+              this.render();
+            },
+            render:function(){
+              var template = _.template($("#div_template").html());
+              $(this.el).html(template({templatename:'haha'}));
+            },
+            events:{
+                'click #btn':'btnClick'
+            },
+            btnClick:function(){
+              alert('btn click')
+            }
+        });
+        var view = new AppView();
+
+    })(jQuery);
+</script>
+
+</html>
