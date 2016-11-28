@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>backboneDemo1</title>
+</head>
+<body>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script>
+(function ($) {
+    var Book = Backbone.Model.extend({
+        initialize : function (){
+
+        },
+        //直接定义，设置默认值
+        defaults:{
+          title : 'default'
+        }
+    });
+
+    var BookShelf = Backbone.Collection.extend({
+        model : Book
+    });
+
+    var book1 = new Book({title:'book1'});
+    var book2 = new Book({title:'book2'});
+    var book3 = new Book({title:'book3'});
+
+    var bookshelf = new BookShelf;
+    bookshelf.add(book1);
+    bookshelf.add(book2);
+    bookshelf.add(book3);
+
+    bookshelf.remove(book3);
+
+    bookshelf.each(function(book){
+      console.log(book.get('title'));
+    });
+
+})(jQuery);
+</script>
+</html>
